@@ -1,5 +1,7 @@
 package com.batch8grp1.obs.dto;
 
+import java.util.Random;
+
 import lombok.*;
 
 @Getter
@@ -27,11 +29,12 @@ public class UserDto {
 
 	public UserDto() {}
 	
-	public UserDto(String firstName, String lastname, String fatherName, String mobileNo, String emailId,
+	public UserDto(String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
 			String aadharNo, String dOB, String address, String occupationType, String sourceofIncome,
-			String grossAnnualIncome, String accountId) {
+			String grossAnnualIncome) {
 		super();
-		//this.userId = userId;
+		this.userId = setUserId();
+		this.title=title;
 		this.firstName = firstName;
 		this.lastname = lastname;
 		this.fatherName = fatherName;
@@ -43,7 +46,22 @@ public class UserDto {
 		this.occupationType = occupationType;
 		this.sourceofIncome = sourceofIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
-		this.accountId = accountId;
+		this.accountId = setAccountId();
+	}
+	
+	public String setUserId() {
+		Random rand = new Random();
+        int userid = rand.nextInt(100000);
+		this.userId = Integer.toString(userid);
+		return this.userId;
+	}
+
+
+	public String setAccountId() {
+		Random rand = new Random();
+        int accountid = rand.nextInt(100000);
+		this.accountId = Integer.toString(accountid);
+		return this.accountId;
 	}
 
 	public String getUserId() {
@@ -51,6 +69,54 @@ public class UserDto {
 	}
 	public String getAccountId() {
 		return accountId;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public String getFatherName() {
+		return fatherName;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public String getAadharNo() {
+		return aadharNo;
+	}
+
+	public String getdOB() {
+		return dOB;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getOccupationType() {
+		return occupationType;
+	}
+
+	public String getSourceofIncome() {
+		return sourceofIncome;
+	}
+
+	public String getGrossAnnualIncome() {
+		return grossAnnualIncome;
 	}
 
 }

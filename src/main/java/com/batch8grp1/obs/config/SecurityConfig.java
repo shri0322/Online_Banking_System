@@ -19,6 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .antMatchers("/").permitAll()
 	        .antMatchers(HttpMethod.POST, "/netbanking/login").permitAll()
 	        .antMatchers(HttpMethod.POST, "/netbanking/signup").permitAll()
+	        .antMatchers(HttpMethod.POST, "/user/register").permitAll()
 	        .anyRequest().authenticated();
 	    }
 //	@Bean 

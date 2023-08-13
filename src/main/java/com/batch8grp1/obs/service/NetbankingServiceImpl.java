@@ -22,7 +22,6 @@ public class NetbankingServiceImpl implements NetbankingService {
 		Netbanking netbanking=new Netbanking(netbankingDto.getNetbankingId(),
 				netbankingDto.getAccountId(),netbankingDto.getPassword(),netbankingDto.getTxnPassword(),netbankingDto.getOtp());
 		netbankingRepository.save(netbanking);
-		//netbankingRepository.save(netbanking);
 		return netbanking.getNetbankingId();
 	}
 

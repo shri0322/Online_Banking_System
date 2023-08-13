@@ -1,5 +1,7 @@
 package com.batch8grp1.obs.entity;
 
+import java.util.Random;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ public class User {
 	@Column(name="UserId",nullable=false)
 	private String userId;
 	
+	@Column(name="Title",nullable=false)
 	private String title;
 	
 	@Column(name="Firstname",nullable=false)
@@ -24,7 +27,7 @@ public class User {
 	
 	@Column(name="Lastname",nullable=false)
 	private String lastname;
-	
+
 	@Column(name="Fathername",nullable=false)
 	private String fatherName;
 	
@@ -55,11 +58,12 @@ public class User {
 	@Column(name="AccountId",nullable=false)
 	private String accountId;
 	
-	public User(String userId, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
+	public User(String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
 			String aadharNo, String dOB, String address, String occupationType, String sourceofIncome,
-			String grossAnnualIncome, String accountId) {
+			String grossAnnualIncome) {
 		super();
-		this.userId = userId;
+		this.userId = setUserId();
+		this.title=title;
 		this.firstName = firstName;
 		this.lastname = lastname;
 		this.fatherName = fatherName;
@@ -71,9 +75,24 @@ public class User {
 		this.occupationType = occupationType;
 		this.sourceofIncome = sourceofIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
-		this.accountId = accountId;
+		this.accountId = setAccountId();
 	}
 	
+
+	public String setUserId() {
+		Random rand = new Random();
+        int userid = rand.nextInt(100000);
+		this.userId = Integer.toString(userid);
+		return this.userId;
+	}
+
+
+	public String setAccountId() {
+		Random rand = new Random();
+        int accountid = rand.nextInt(100000);
+		this.accountId = Integer.toString(accountid);
+		return this.accountId;
+	}
 	
 	public String getUserId() {
 		return userId;
