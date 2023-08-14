@@ -32,10 +32,39 @@ public class UserServiceImpl implements UserService{
 		Netbanking forgotUser=netbankingRepository.findByAccountId(accountId);
 		if(forgotUser.getOtp().equals(otp))
 		{
-			response="User Verified";
+			response="User Verified. UserId sent to your registered email-id";
 		}
 		else response="User Unverified";
 		
 		return response;
+	}
+	
+	public String forgotPassword(String userId, String otp)
+	{
+		String response="";
+		User forgotPassword=userRepository.findByUserId(userId);
+		Netbanking user=netbankingRepository.findByAccountId(forgotPassword.getAccountId());
+		if(user.getOtp().equals(otp))
+		{
+			response="User Verified. You are been directed to set password page";
+		}
+		else response="User Unverified";
+		
+		return response;
+		
+	}
+	
+	public String setLoginPassword(String accountId, String newLoginPassword, String confirmLoginPassword)
+	{
+		String response="";
+		Netbanking user=netbankingRepository.findByAccountId(accountId);
+		if(newLoginPassword.equals(confirmLoginPassword))
+		{
+			user.setPassword(newLoginPassword);
+			response ="New Password Set";
+		}
+		else response="Couldn't Set New Password";
+		return response;
+		
 	}
 }

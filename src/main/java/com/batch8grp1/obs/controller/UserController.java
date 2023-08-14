@@ -34,6 +34,20 @@ public class UserController {
 		return ResponseEntity.ok(response);
 	}
 	
+	@PostMapping("/forgotpassword")
+	public ResponseEntity<?> forgotPassword(@RequestBody String userId, String otp)
+	{
+		String response=userService.forgotPassword(userId,otp);
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping("/setloginpassword")
+	public ResponseEntity<?> setLoginPassword(@RequestBody String accountId, String newLoginPassword, String confirmLoginPassword)
+	{
+		String response=userService.setLoginPassword(accountId,newLoginPassword,confirmLoginPassword);
+		return ResponseEntity.ok(response);
+	}
+	
 	
 
 }

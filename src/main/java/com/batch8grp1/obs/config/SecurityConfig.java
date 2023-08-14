@@ -17,20 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    public void configure(HttpSecurity http) throws Exception {
 	       http.csrf().disable().authorizeRequests()
 	        .antMatchers("/").permitAll()
-	        .antMatchers(HttpMethod.POST, "/netbanking/login").permitAll()
-	        .antMatchers(HttpMethod.POST, "/netbanking/signup").permitAll()
-	        .antMatchers(HttpMethod.POST, "/user/register").permitAll()
-	        .antMatchers(HttpMethod.POST, "/user/forgotuserid").permitAll()
+	        .antMatchers(HttpMethod.POST, "/netbanking").permitAll()
+	        .antMatchers(HttpMethod.POST, "/user").permitAll()
 	        .anyRequest().authenticated();
 	    }
-//	@Bean 
-//	 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//	    http.authorizeRequests().antMatchers(
-//                "/netbanking/login")
-//	      .anyRequest().authenticated()
-//	      .and().httpBasic();
-//	    return http.build();
-//	}
+
 	
 	@Bean
 	public PasswordEncoder passwordEncoder()
