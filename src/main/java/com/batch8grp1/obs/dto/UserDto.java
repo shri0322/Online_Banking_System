@@ -29,9 +29,9 @@ public class UserDto {
 
 	public UserDto() {}
 	
-	public UserDto(String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
+	public UserDto(String userId, String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
 			String aadharNo, String dOB, String address, String occupationType, String sourceofIncome,
-			String grossAnnualIncome) {
+			String grossAnnualIncome,String accoundId) {
 		super();
 		this.userId = setUserId();
 		this.title=title;

@@ -58,9 +58,9 @@ public class User {
 	@Column(name="AccountId",nullable=false)
 	private String accountId;
 	
-	public User(String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
+	public User(String userId, String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
 			String aadharNo, String dOB, String address, String occupationType, String sourceofIncome,
-			String grossAnnualIncome) {
+			String grossAnnualIncome, String accountId) {
 		super();
 		this.userId = setUserId();
 		this.title=title;
@@ -78,6 +78,66 @@ public class User {
 		this.accountId = setAccountId();
 	}
 	
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public String getLastname() {
+		return lastname;
+	}
+
+
+	public String getFatherName() {
+		return fatherName;
+	}
+
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+
+	public String getAadharNo() {
+		return aadharNo;
+	}
+
+
+	public String getdOB() {
+		return dOB;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public String getOccupationType() {
+		return occupationType;
+	}
+
+
+	public String getSourceofIncome() {
+		return sourceofIncome;
+	}
+
+
+	public String getGrossAnnualIncome() {
+		return grossAnnualIncome;
+	}
+
 
 	public String setUserId() {
 		Random rand = new Random();

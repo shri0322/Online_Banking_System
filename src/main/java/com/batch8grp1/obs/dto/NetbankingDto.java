@@ -34,8 +34,10 @@ public class NetbankingDto {
 	public NetbankingDto(String netbankingId,String accountId,String password,String txnPassword,String otp) {
 		this.netbankingId=setNetbankingId();
 		this.accountId=accountId;
-		this.password=setPassword(password);
-		this.txnPassword=setTxnPassword(txnPassword);
+		//this.password=setPassword(password);
+		//this.txnPassword=setTxnPassword(txnPassword);
+		this.password=password;
+		this.txnPassword=txnPassword;
 		this.otp=otp;
 		
 	}
@@ -53,7 +55,7 @@ public class NetbankingDto {
 	}
 
 	public String setPassword(String password) {
-		this.password = passwordEncoder.encode(password);
+		//this.password = passwordEncoder.encode(password);
 		return this.password;
 	}
 
@@ -62,7 +64,7 @@ public class NetbankingDto {
 	}
 
 	public String setTxnPassword(String txnPassword) {
-		this.password = passwordEncoder.encode(txnPassword);
+		//this.password = passwordEncoder.encode(txnPassword);
 		return this.txnPassword;
 	}
 

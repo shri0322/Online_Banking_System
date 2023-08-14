@@ -33,7 +33,8 @@ public class NetbankingServiceImpl implements NetbankingService {
 		{
 			String password = loginDto.getPassword();
 			String encodedPassword = netbanking1.getPassword();
-			Boolean isPwdRight=passwordEncoder.matches(password, encodedPassword);
+			Boolean isPwdRight = password.equals(encodedPassword);
+			//Boolean isPwdRight=passwordEncoder.matches(password, encodedPassword);
 			
 			if(isPwdRight) {
 				Netbanking netbanking2=netbankingRepository.findByNetbankingIdAndPassword(loginDto.getNetbankingId(), encodedPassword);

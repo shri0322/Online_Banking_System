@@ -31,6 +31,8 @@ public class Netbanking {
 	
 	private String otpRequestTime;
 	
+	public Netbanking() {};
+	
 	public Netbanking(String netbankingId, String accountId,String password,String txnPassword,String otp) {
 		this.netbankingId=netbankingId;
 		this.accountId=accountId;
