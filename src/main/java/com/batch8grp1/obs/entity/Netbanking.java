@@ -42,8 +42,6 @@ public class Netbanking {
 		
 	}
 	
-	
-	
 	public String getNetbankingId() {
 		return netbankingId;
 	}

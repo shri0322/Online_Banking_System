@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import com.batch8grp1.obs.entity.Netbanking;
-import com.batch8grp1.obs.entity.User;
+import com.batch8grp1.obs.entity.UserDetails;
 
 @EnableJpaRepositories
 @Repository

@@ -13,7 +13,7 @@ import lombok.*;
 @Setter
 @Entity
 @Table(name="UserDetails")
-public class User {
+public class UserDetails {
 
 	@Id
 	@Column(name="UserId",nullable=false)
@@ -26,7 +26,7 @@ public class User {
 	private String firstName;
 	
 	@Column(name="Lastname",nullable=false)
-	private String lastname;
+	private String lastName;
 
 	@Column(name="Fathername",nullable=false)
 	private String fatherName;
@@ -50,7 +50,7 @@ public class User {
 	private String occupationType;
 	
 	@Column(name="SourceofIncome",nullable=false)
-	private String sourceofIncome;
+	private String sourceOfIncome;
 	
 	@Column(name="GrossAnnualIncome",nullable=false)
 	private String grossAnnualIncome;
@@ -58,14 +58,16 @@ public class User {
 	@Column(name="AccountId",nullable=false)
 	private String accountId;
 	
-	public User(String userId, String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
-			String aadharNo, String dOB, String address, String occupationType, String sourceofIncome,
+	public UserDetails() {}
+	
+	public UserDetails(String userId, String title, String firstName, String lastName, String fatherName, String mobileNo, String emailId,
+			String aadharNo, String dOB, String address, String occupationType, String sourceOfIncome,
 			String grossAnnualIncome, String accountId) {
 		super();
 		this.userId = setUserId();
 		this.title=title;
 		this.firstName = firstName;
-		this.lastname = lastname;
+		this.lastName = lastName;
 		this.fatherName = fatherName;
 		this.mobileNo = mobileNo;
 		this.emailId = emailId;
@@ -73,7 +75,7 @@ public class User {
 		this.dOB = dOB;
 		this.address = address;
 		this.occupationType = occupationType;
-		this.sourceofIncome = sourceofIncome;
+		this.sourceOfIncome = sourceOfIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
 		this.accountId = setAccountId();
 	}
@@ -90,7 +92,7 @@ public class User {
 
 
 	public String getLastname() {
-		return lastname;
+		return lastName;
 	}
 
 
@@ -129,8 +131,8 @@ public class User {
 	}
 
 
-	public String getSourceofIncome() {
-		return sourceofIncome;
+	public String getSourceOfIncome() {
+		return sourceOfIncome;
 	}
 
 

@@ -1,9 +1,13 @@
 package com.batch8grp1.obs.dto;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.batch8grp1.obs.repository.NetbankingRepository;
 
 import lombok.*;
 
@@ -21,6 +25,8 @@ public class NetbankingDto {
 	private String password;
 	private String txnPassword;
 	private String otp;
+
+	@Autowired private NetbankingRepository netbankingRepository;
 	
 	//public NetbankingDto() {};
 	
@@ -34,10 +40,10 @@ public class NetbankingDto {
 	public NetbankingDto(String netbankingId,String accountId,String password,String txnPassword,String otp) {
 		this.netbankingId=setNetbankingId();
 		this.accountId=accountId;
-		//this.password=setPassword(password);
-		//this.txnPassword=setTxnPassword(txnPassword);
-		this.password=password;
-		this.txnPassword=txnPassword;
+		this.password=setPassword(password);
+		this.txnPassword=setTxnPassword(txnPassword);
+		//this.password=password;
+		//this.txnPassword=txnPassword;
 		this.otp=otp;
 		
 	}
@@ -55,8 +61,10 @@ public class NetbankingDto {
 	}
 
 	public String setPassword(String password) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
+		String encodedPassword = bCryptPasswordEncoder.encode(password);
 		//this.password = passwordEncoder.encode(password);
-		return this.password;
+		return encodedPassword;
 	}
 
 	public String getTxnPassword() {
@@ -64,12 +72,18 @@ public class NetbankingDto {
 	}
 
 	public String setTxnPassword(String txnPassword) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
+		String encodedPassword = bCryptPasswordEncoder.encode(txnPassword);
 		//this.password = passwordEncoder.encode(txnPassword);
-		return this.txnPassword;
+		return encodedPassword;
 	}
 
 	public String getOtp() {
 		return otp;
 	}
-
+//
+//	public NetbankingDto(NetbankingRepository netbankingRepository, PasswordEncoder passwordEncoder) {
+//        this.netbankingRepository = netbankingRepository;
+//        this.passwordEncoder = passwordEncoder;
+//    }
 }

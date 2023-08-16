@@ -9,13 +9,13 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserDetailsDto {
 	
 
 	private String userId;
 	private String title;
 	private String firstName;
-	private String lastname;
+	private String lastName;
 	private String fatherName;
 	private String mobileNo;
 	private String emailId;
@@ -23,20 +23,20 @@ public class UserDto {
 	private String dOB;
 	private String address;
 	private String occupationType;
-	private String sourceofIncome;
+	private String sourceOfIncome;
 	private String grossAnnualIncome;
 	private String accountId;
 
-	public UserDto() {}
+	public UserDetailsDto() {}
 	
-	public UserDto(String userId, String title, String firstName, String lastname, String fatherName, String mobileNo, String emailId,
-			String aadharNo, String dOB, String address, String occupationType, String sourceofIncome,
+	public UserDetailsDto(String userId, String title, String firstName, String lastName, String fatherName, String mobileNo, String emailId,
+			String aadharNo, String dOB, String address, String occupationType, String sourceOfIncome,
 			String grossAnnualIncome,String accoundId) {
 		super();
 		this.userId = setUserId();
 		this.title=title;
 		this.firstName = firstName;
-		this.lastname = lastname;
+		this.lastName = lastName;
 		this.fatherName = fatherName;
 		this.mobileNo = mobileNo;
 		this.emailId = emailId;
@@ -44,7 +44,7 @@ public class UserDto {
 		this.dOB = dOB;
 		this.address = address;
 		this.occupationType = occupationType;
-		this.sourceofIncome = sourceofIncome;
+		this.sourceOfIncome = sourceOfIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
 		this.accountId = setAccountId();
 	}
@@ -79,8 +79,8 @@ public class UserDto {
 		return firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
 	public String getFatherName() {
@@ -111,8 +111,8 @@ public class UserDto {
 		return occupationType;
 	}
 
-	public String getSourceofIncome() {
-		return sourceofIncome;
+	public String getSourceOfIncome() {
+		return sourceOfIncome;
 	}
 
 	public String getGrossAnnualIncome() {
