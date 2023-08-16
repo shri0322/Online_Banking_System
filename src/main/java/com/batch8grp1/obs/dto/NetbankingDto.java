@@ -30,15 +30,8 @@ public class NetbankingDto {
 	
 	//public NetbankingDto() {};
 	
-	public String setNetbankingId()
-	{
-		Random rand=new Random();
-	    return Integer.toString(rand.nextInt(10000000));
-	    
-	}
-	
-	public NetbankingDto(String netbankingId,String accountId,String password,String txnPassword,String otp) {
-		this.netbankingId=setNetbankingId();
+	public NetbankingDto(String accountId,String password,String txnPassword,String otp) {
+		//this.netbankingId=setNetbankingId();
 		this.accountId=accountId;
 		this.password=setPassword(password);
 		this.txnPassword=setTxnPassword(txnPassword);

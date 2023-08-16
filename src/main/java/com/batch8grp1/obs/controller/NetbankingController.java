@@ -14,7 +14,7 @@ import com.batch8grp1.obs.payload.response.LoginMessage;
 import com.batch8grp1.obs.service.NetbankingService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/netbanking")
 public class NetbankingController {
 	

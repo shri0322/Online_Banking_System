@@ -22,8 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		UserDetails newuser=new UserDetails(userDetailsDto.getUserId(),userDetailsDto.getTitle(),userDetailsDto.getFirstName(),userDetailsDto.getLastName(),userDetailsDto.getFatherName(),userDetailsDto.getMobileNo(),userDetailsDto.getEmailId(),
 						 userDetailsDto.getAadharNo(),userDetailsDto.getdOB(),userDetailsDto.getAddress(),userDetailsDto.getOccupationType(),userDetailsDto.getSourceOfIncome(),userDetailsDto.getGrossAnnualIncome(),userDetailsDto.getAccountId());
 		
+		
 		userRepository.save(newuser);
-		return "User Registered";
+		String response=newuser.getAccountId() +"," + newuser.getTitle() + " " + newuser.getFirstName() + " "+ newuser.getLastname();
+		return response;
 		
 	}
 

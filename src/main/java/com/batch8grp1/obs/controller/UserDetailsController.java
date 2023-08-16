@@ -14,7 +14,7 @@ import com.batch8grp1.obs.dto.UserDetailsDto;
 import com.batch8grp1.obs.service.UserDetailsService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/user")
 public class UserDetailsController {
 	

@@ -29,11 +29,11 @@ public class UserDetailsDto {
 
 	public UserDetailsDto() {}
 	
-	public UserDetailsDto(String userId, String title, String firstName, String lastName, String fatherName, String mobileNo, String emailId,
+	public UserDetailsDto(String title, String firstName, String lastName, String fatherName, String mobileNo, String emailId,
 			String aadharNo, String dOB, String address, String occupationType, String sourceOfIncome,
-			String grossAnnualIncome,String accoundId) {
+			String grossAnnualIncome) {
 		super();
-		this.userId = setUserId();
+		//this.userId = setUserId();
 		this.title=title;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -46,23 +46,9 @@ public class UserDetailsDto {
 		this.occupationType = occupationType;
 		this.sourceOfIncome = sourceOfIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
-		this.accountId = setAccountId();
+		//this.accountId = setAccountId();
 	}
 	
-	public String setUserId() {
-		Random rand = new Random();
-        int userid = rand.nextInt(100000);
-		this.userId = Integer.toString(userid);
-		return this.userId;
-	}
-
-
-	public String setAccountId() {
-		Random rand = new Random();
-        int accountid = rand.nextInt(100000);
-		this.accountId = Integer.toString(accountid);
-		return this.accountId;
-	}
 
 	public String getUserId() {
 		return userId;
