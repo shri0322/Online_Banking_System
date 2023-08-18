@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.batch8grp1.obs.dto.SetLoginPasswordDto;
 import com.batch8grp1.obs.dto.UserDetailsDto;
+import com.batch8grp1.obs.payload.response.CreateAccountResponse;
 import com.batch8grp1.obs.service.UserDetailsService;
 
 @RestController
@@ -20,11 +21,11 @@ public class UserDetailsController {
 	
 	@Autowired private UserDetailsService userDetailsService;
 	
-	@PostMapping("/register")
+	@PostMapping("/createaccount")
 	public ResponseEntity<?> Register(@RequestBody UserDetailsDto userDetailsDto) 
 	
 	{
-		String response=userDetailsService.Register(userDetailsDto);
+		CreateAccountResponse response=userDetailsService.createAccount(userDetailsDto);
 		return ResponseEntity.ok(response);
 	}
 	
@@ -49,13 +50,6 @@ public class UserDetailsController {
 		String response=userDetailsService.setLoginPassword(setLoginPassword);
 		return ResponseEntity.ok(response);
 	}
-	
-//	@PostMapping("/setloginpassword")
-//	public ResponseEntity<?> setLoginPassword(@RequestParam String accountId,@RequestParam String newLoginPassword,@RequestParam String confirmLoginPassword)
-//	{
-//		String response=userDetailsService.setLoginPassword(accountId,newLoginPassword,confirmLoginPassword);
-//		return ResponseEntity.ok(response);
-//	}
 	
 
 }

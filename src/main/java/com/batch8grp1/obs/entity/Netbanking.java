@@ -1,5 +1,7 @@
 package com.batch8grp1.obs.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -34,12 +36,25 @@ public class Netbanking {
 	public Netbanking() {};
 	
 	public Netbanking(String netbankingId, String accountId,String password,String txnPassword,String otp) {
-		this.netbankingId=netbankingId;
+		this.netbankingId=generateUniqueNumericString(10);
 		this.accountId=accountId;
 		this.password=password;
 		this.txnPassword=txnPassword;
 		this.otp=otp;
 		
+	}
+	
+	public static String generateUniqueNumericString(int length) {
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString().replaceAll("-", ""); 
+        String numericString = uuidAsString.replaceAll("[^0-9]", "");
+        if (numericString.length() < length) {
+            numericString = String.format("%0" + length + "d", Long.parseLong(numericString));
+        } else if (numericString.length() > length) {
+            numericString = numericString.substring(0, length);
+        }
+
+        return numericString;
 	}
 	
 	public String getNetbankingId() {
@@ -68,5 +83,10 @@ public class Netbanking {
 
 	public String getOtp() {
 		return otp;
+	}
+	
+	public void setOtp(String otp)
+	{
+		this.otp=otp;
 	}
 }

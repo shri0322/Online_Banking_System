@@ -25,25 +25,13 @@ public class NetbankingDto {
 	private String password;
 	private String txnPassword;
 	private String otp;
-
-	@Autowired private NetbankingRepository netbankingRepository;
 	
 	//public NetbankingDto() {};
 	
-	public String setNetbankingId()
-	{
-		Random rand=new Random();
-	    return Integer.toString(rand.nextInt(10000000));
-	    
-	}
-	
-	public NetbankingDto(String netbankingId,String accountId,String password,String txnPassword,String otp) {
-		this.netbankingId=setNetbankingId();
+	public NetbankingDto(String accountId,String password,String txnPassword,String otp) {
 		this.accountId=accountId;
 		this.password=setPassword(password);
 		this.txnPassword=setTxnPassword(txnPassword);
-		//this.password=password;
-		//this.txnPassword=txnPassword;
 		this.otp=otp;
 		
 	}
@@ -81,9 +69,5 @@ public class NetbankingDto {
 	public String getOtp() {
 		return otp;
 	}
-//
-//	public NetbankingDto(NetbankingRepository netbankingRepository, PasswordEncoder passwordEncoder) {
-//        this.netbankingRepository = netbankingRepository;
-//        this.passwordEncoder = passwordEncoder;
-//    }
+
 }

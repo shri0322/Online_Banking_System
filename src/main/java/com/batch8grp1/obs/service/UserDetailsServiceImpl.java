@@ -1,12 +1,17 @@
 package com.batch8grp1.obs.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.batch8grp1.obs.dto.SetLoginPasswordDto;
 import com.batch8grp1.obs.dto.UserDetailsDto;
+import com.batch8grp1.obs.entity.AccountDetails;
 import com.batch8grp1.obs.entity.Netbanking;
 import com.batch8grp1.obs.entity.UserDetails;
+import com.batch8grp1.obs.payload.response.CreateAccountResponse;
+import com.batch8grp1.obs.repository.AccountDetailsRepository;
 import com.batch8grp1.obs.repository.NetbankingRepository;
 import com.batch8grp1.obs.repository.UserRepository;
 
@@ -15,15 +20,23 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
 	@Autowired private UserRepository userRepository;
 	@Autowired private NetbankingRepository netbankingRepository;
+	@Autowired private AccountDetailsRepository accountDetailsRepository;
 	
-	public String Register(UserDetailsDto userDetailsDto)
+	public CreateAccountResponse createAccount(UserDetailsDto userDetailsDto)
 	{
 		
 		UserDetails newuser=new UserDetails(userDetailsDto.getUserId(),userDetailsDto.getTitle(),userDetailsDto.getFirstName(),userDetailsDto.getLastName(),userDetailsDto.getFatherName(),userDetailsDto.getMobileNo(),userDetailsDto.getEmailId(),
 						 userDetailsDto.getAadharNo(),userDetailsDto.getdOB(),userDetailsDto.getAddress(),userDetailsDto.getOccupationType(),userDetailsDto.getSourceOfIncome(),userDetailsDto.getGrossAnnualIncome(),userDetailsDto.getAccountId());
 		
 		userRepository.save(newuser);
-		return "User Registered";
+		
+		Netbanking newnetuser = new Netbanking("",newuser.getAccountId(),"","","");
+		netbankingRepository.save(newnetuser);
+		
+		AccountDetails newaccount = new AccountDetails(newuser.getAccountId(),0,LocalDate.now().toString(),false);
+		accountDetailsRepository.save(newaccount);
+		
+		return new CreateAccountResponse(newuser.getAccountId(),newuser.getTitle(),newuser.getFirstName(),newuser.getLastname());
 		
 	}
 

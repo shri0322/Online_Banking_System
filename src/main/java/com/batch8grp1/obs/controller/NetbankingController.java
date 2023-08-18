@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.batch8grp1.obs.dto.LoginDto;
 import com.batch8grp1.obs.dto.NetbankingDto;
 import com.batch8grp1.obs.payload.response.LoginMessage;
+import com.batch8grp1.obs.payload.response.RegisterResponse;
 import com.batch8grp1.obs.service.NetbankingService;
 
 @RestController
@@ -28,12 +29,11 @@ public class NetbankingController {
 		
 	}
 	
-	@PostMapping("/signup")
-	public String signUp(@RequestBody NetbankingDto netbankingDto)
+	@PostMapping("/register")
+	public ResponseEntity<?> signUp(@RequestBody NetbankingDto netbankingDto)
 	{
-		String id=netbankingService.Signup(netbankingDto);
-		String response = id + " Netbanking Signup Successful!";
-		return response;
+		RegisterResponse id=netbankingService.register(netbankingDto);
+		return ResponseEntity.ok(id);
 		
 	}
 

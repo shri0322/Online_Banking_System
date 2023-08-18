@@ -1,6 +1,7 @@
 package com.batch8grp1.obs.entity;
 
 import java.util.Random;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,7 +65,7 @@ public class UserDetails {
 			String aadharNo, String dOB, String address, String occupationType, String sourceOfIncome,
 			String grossAnnualIncome, String accountId) {
 		super();
-		this.userId = setUserId();
+		this.userId = generateUniqueNumericString(11);
 		this.title=title;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -77,10 +78,23 @@ public class UserDetails {
 		this.occupationType = occupationType;
 		this.sourceOfIncome = sourceOfIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
-		this.accountId = setAccountId();
+		this.accountId = generateUniqueNumericString(11);
 	}
 	
+	public static String generateUniqueNumericString(int length) {
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString().replaceAll("-", ""); 
+        String numericString = uuidAsString.replaceAll("[^0-9]", "");
+        if (numericString.length() < length) {
+            numericString = String.format("%0" + length + "d", Long.parseLong(numericString));
+        } else if (numericString.length() > length) {
+            numericString = numericString.substring(0, length);
+        }
 
+        return numericString;
+    }
+	
+	
 	public String getTitle() {
 		return title;
 	}

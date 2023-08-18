@@ -7,25 +7,43 @@ import org.springframework.stereotype.Service;
 import com.batch8grp1.obs.dto.LoginDto;
 import com.batch8grp1.obs.dto.NetbankingDto;
 import com.batch8grp1.obs.entity.Netbanking;
+import com.batch8grp1.obs.entity.UserDetails;
 import com.batch8grp1.obs.payload.response.LoginMessage;
+import com.batch8grp1.obs.payload.response.RegisterResponse;
 import com.batch8grp1.obs.repository.NetbankingRepository;
+import com.batch8grp1.obs.repository.UserRepository;
 
 @Service
 public class NetbankingServiceImpl implements NetbankingService {
 
 	@Autowired private NetbankingRepository netbankingRepository;
+	@Autowired private UserRepository userRepository;
+
 	
 	@Autowired PasswordEncoder passwordEncoder;
 	
 	@Override
-	public String Signup(NetbankingDto netbankingDto) {
-		Netbanking netbanking=new Netbanking(netbankingDto.getNetbankingId(),
-				netbankingDto.getAccountId(),netbankingDto.getPassword(),netbankingDto.getTxnPassword(),netbankingDto.getOtp());
+	public RegisterResponse register(NetbankingDto netbankingDto) {
+//		Netbanking netbanking=new Netbanking(netbankingDto.getNetbankingId(),
+//				netbankingDto.getAccountId(),netbankingDto.getPassword(),netbankingDto.getTxnPassword(),netbankingDto.getOtp());
+		
+		Netbanking netbanking = netbankingRepository.findByAccountId(netbankingDto.getAccountId());
+		
+		if(netbanking==null)
+		{
+			return new RegisterResponse(null,"Account doesn't exists");
+		}
+		
+		netbanking.setPassword(netbankingDto.getPassword());
+		netbanking.setTxnPassword(netbankingDto.getTxnPassword());
+		netbanking.setOtp(netbankingDto.getOtp());
 		netbankingRepository.save(netbanking);
-		return netbanking.getNetbankingId();
+		
+		return new RegisterResponse(netbanking.getNetbankingId(),"Netbanking Registration Successful!");
 	}
 
 	NetbankingDto netbankingDto;
+	@SuppressWarnings("unused")
 	@Override
 	public LoginMessage loginNetbanking(LoginDto loginDto) {
 		Netbanking netbanking1 = netbankingRepository.findByNetbankingId(loginDto.getNetbankingId());
@@ -33,21 +51,20 @@ public class NetbankingServiceImpl implements NetbankingService {
 		{
 			String password = loginDto.getPassword();
 			String encodedPassword = netbanking1.getPassword();
-			//Boolean isPwdRight = password.equals(encodedPassword);
 			Boolean isPwdRight=passwordEncoder.matches(password, encodedPassword);
 			
 			if(isPwdRight) {
 				Netbanking netbanking2=netbankingRepository.findByNetbankingIdAndPassword(loginDto.getNetbankingId(), encodedPassword);
+				UserDetails user=userRepository.findByAccountId(netbanking2.getAccountId());
 				if(netbanking2 != null) {
-					return new LoginMessage("Login Success", true);
+					return new LoginMessage(netbanking2.getNetbankingId(),user.getTitle(),user.getFirstName(),user.getLastname(),"Login Successful");
 				}else {
-					return new LoginMessage("Login Failed", false);
-				}
+					return new LoginMessage(netbanking2.getNetbankingId(),"","","","Login Failed");}
 			}else {
-				return new LoginMessage("User's Netbanking doesn't exists", false);
+				return new LoginMessage("","","","","User's Netbanking doesn't exists");
 			}
 		}
-		return new LoginMessage("User Doesnot Exist",false);
+		return new LoginMessage("","","","","User doesn't exists");
 	}
 
 	
