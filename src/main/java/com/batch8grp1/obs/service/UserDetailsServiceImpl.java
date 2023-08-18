@@ -13,12 +13,12 @@ import com.batch8grp1.obs.entity.UserDetails;
 import com.batch8grp1.obs.payload.response.CreateAccountResponse;
 import com.batch8grp1.obs.repository.AccountDetailsRepository;
 import com.batch8grp1.obs.repository.NetbankingRepository;
-import com.batch8grp1.obs.repository.UserRepository;
+import com.batch8grp1.obs.repository.UserDetailsRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
-	@Autowired private UserRepository userRepository;
+	@Autowired private UserDetailsRepository userDetailsRepository;
 	@Autowired private NetbankingRepository netbankingRepository;
 	@Autowired private AccountDetailsRepository accountDetailsRepository;
 	
@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		UserDetails newuser=new UserDetails(userDetailsDto.getUserId(),userDetailsDto.getTitle(),userDetailsDto.getFirstName(),userDetailsDto.getLastName(),userDetailsDto.getFatherName(),userDetailsDto.getMobileNo(),userDetailsDto.getEmailId(),
 						 userDetailsDto.getAadharNo(),userDetailsDto.getdOB(),userDetailsDto.getAddress(),userDetailsDto.getOccupationType(),userDetailsDto.getSourceOfIncome(),userDetailsDto.getGrossAnnualIncome(),userDetailsDto.getAccountId());
 		
-		userRepository.save(newuser);
+		userDetailsRepository.save(newuser);
 		
 		Netbanking newnetuser = new Netbanking("",newuser.getAccountId(),"","","");
 		netbankingRepository.save(newnetuser);
@@ -56,7 +56,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public String forgotPassword(String userId, String otp)
 	{
 		String response="";
-		UserDetails forgotPassword=userRepository.findByUserId(userId);
+		UserDetails forgotPassword=userDetailsRepository.findByUserId(userId);
 		Netbanking user=netbankingRepository.findByAccountId(forgotPassword.getAccountId());
 		if(user.getOtp().equals(otp))
 		{

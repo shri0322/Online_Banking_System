@@ -15,7 +15,7 @@ import com.batch8grp1.obs.payload.response.CreateAccountResponse;
 import com.batch8grp1.obs.service.UserDetailsService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/user")
 public class UserDetailsController {
 	
@@ -29,6 +29,7 @@ public class UserDetailsController {
 		return ResponseEntity.ok(response);
 	}
 	
+	//{accountId} - update it
 	@PostMapping("/forgotuserid")
 	public ResponseEntity<?> forgotUserId(@RequestParam String AccountId,@RequestParam String otp) 
 	
@@ -37,6 +38,7 @@ public class UserDetailsController {
 		return ResponseEntity.ok(response);
 	}
 	
+	//{accountId} - update it
 	@PostMapping("/forgotpassword")
 	public ResponseEntity<?> forgotPassword(@RequestParam String userId, @RequestParam String otp)
 	{

@@ -11,13 +11,13 @@ import com.batch8grp1.obs.entity.UserDetails;
 import com.batch8grp1.obs.payload.response.LoginMessage;
 import com.batch8grp1.obs.payload.response.RegisterResponse;
 import com.batch8grp1.obs.repository.NetbankingRepository;
-import com.batch8grp1.obs.repository.UserRepository;
+import com.batch8grp1.obs.repository.UserDetailsRepository;
 
 @Service
 public class NetbankingServiceImpl implements NetbankingService {
 
 	@Autowired private NetbankingRepository netbankingRepository;
-	@Autowired private UserRepository userRepository;
+	@Autowired private UserDetailsRepository userDetailsRepository;
 
 	
 	@Autowired PasswordEncoder passwordEncoder;
@@ -55,7 +55,7 @@ public class NetbankingServiceImpl implements NetbankingService {
 			
 			if(isPwdRight) {
 				Netbanking netbanking2=netbankingRepository.findByNetbankingIdAndPassword(loginDto.getNetbankingId(), encodedPassword);
-				UserDetails user=userRepository.findByAccountId(netbanking2.getAccountId());
+				UserDetails user=userDetailsRepository.findByAccountId(netbanking2.getAccountId());
 				if(netbanking2 != null) {
 					return new LoginMessage(netbanking2.getNetbankingId(),user.getTitle(),user.getFirstName(),user.getLastname(),"Login Successful");
 				}else {
