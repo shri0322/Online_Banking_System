@@ -3,6 +3,7 @@ package com.batch8grp1.obs.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,8 @@ public class AccountDetailsController {
 	
 	@Autowired private AccountDetailsService accountdetailsService;
 	
-	@PostMapping("/getdetails")
-	public ResponseEntity<?> getAccountDetails(@RequestParam String accountId)
+	@GetMapping("/getdetails")
+	public ResponseEntity<?> getAccountDetails(@RequestParam(value="accountId") String accountId)
 	{
 		AccountDetailsResponse accountResponse = accountdetailsService.getAccountDetails(accountId);
 		return ResponseEntity.ok(accountResponse);		

@@ -17,6 +17,8 @@ public class AccountDetailsServiceImpl implements AccountDetailsService{
 	
 	public AccountDetailsResponse getAccountDetails(String accountId) {
 		
+		System.out.println("AccountId: " + accountId);
+		
 		AccountDetails account=accountdetailsRepository.findByAccountId(accountId);
 		UserDetails user=userdetailsRepository.findByAccountId(accountId);
 		return new AccountDetailsResponse(account.getAccountId(),user.getTitle(),user.getFirstName(),user.getLastname(),account.getCreatedAt(),account.getBalance());

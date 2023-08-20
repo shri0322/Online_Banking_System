@@ -21,7 +21,7 @@ public class NetbankingController {
 	
 	@Autowired private NetbankingService netbankingService;
 	
-	@PostMapping("/login")
+	@PostMapping("/signin")
 	public ResponseEntity<?> loginNetbanking(@RequestBody LoginDto loginDto)
 	{
 		LoginMessage loginResponse = netbankingService.loginNetbanking(loginDto);
@@ -30,7 +30,7 @@ public class NetbankingController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<?> signUp(@RequestBody NetbankingDto netbankingDto)
+	public ResponseEntity<?> register(@RequestBody NetbankingDto netbankingDto)
 	{
 		RegisterResponse id=netbankingService.register(netbankingDto);
 		return ResponseEntity.ok(id);

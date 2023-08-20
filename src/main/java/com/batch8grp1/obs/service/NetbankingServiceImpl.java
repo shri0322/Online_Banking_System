@@ -54,17 +54,25 @@ public class NetbankingServiceImpl implements NetbankingService {
 			Boolean isPwdRight=passwordEncoder.matches(password, encodedPassword);
 			
 			if(isPwdRight) {
-				Netbanking netbanking2=netbankingRepository.findByNetbankingIdAndPassword(loginDto.getNetbankingId(), encodedPassword);
-				UserDetails user=userDetailsRepository.findByAccountId(netbanking2.getAccountId());
-				if(netbanking2 != null) {
-					return new LoginMessage(netbanking2.getNetbankingId(),user.getTitle(),user.getFirstName(),user.getLastname(),"Login Successful");
-				}else {
-					return new LoginMessage(netbanking2.getNetbankingId(),"","","","Login Failed");}
+				
+				UserDetails user=userDetailsRepository.findByAccountId(netbanking1.getAccountId());
+
+				return new LoginMessage(netbanking1.getNetbankingId(),user.getTitle(),user.getFirstName(),user.getLastname(),"Login Successful");}
+			else {
+				return new LoginMessage(netbanking1.getNetbankingId(),"","","","Login Failed");}
+				
+//				Netbanking netbanking2=netbankingRepository.findByNetbankingIdAndPassword(loginDto.getNetbankingId(), encodedPassword);
+//				UserDetails user=userDetailsRepository.findByAccountId(netbanking2.getAccountId());
+//				if(netbanking2 != null) {
+//					return new LoginMessage(netbanking2.getNetbankingId(),user.getTitle(),user.getFirstName(),user.getLastname(),"Login Successful");
+//				}else {
+//					return new LoginMessage(netbanking2.getNetbankingId(),"","","","Login Failed");}
+				
 			}else {
 				return new LoginMessage("","","","","User's Netbanking doesn't exists");
 			}
-		}
-		return new LoginMessage("","","","","User doesn't exists");
+//	}
+		//return new LoginMessage("","","","","User doesn't exists");
 	}
 
 	

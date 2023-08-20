@@ -1,6 +1,6 @@
 package com.batch8grp1.obs.entity;
 
-import java.util.Random;
+//import java.util.Random;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -154,21 +154,6 @@ public class UserDetails {
 		return grossAnnualIncome;
 	}
 
-
-	public String setUserId() {
-		Random rand = new Random();
-        int userid = rand.nextInt(100000);
-		this.userId = Integer.toString(userid);
-		return this.userId;
-	}
-
-
-	public String setAccountId() {
-		Random rand = new Random();
-        int accountid = rand.nextInt(100000);
-		this.accountId = Integer.toString(accountid);
-		return this.accountId;
-	}
 	
 	public String getUserId() {
 		return userId;
