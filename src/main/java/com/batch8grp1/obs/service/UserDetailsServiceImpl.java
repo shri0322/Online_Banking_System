@@ -1,8 +1,12 @@
 package com.batch8grp1.obs.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import javax.security.auth.login.AccountNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.batch8grp1.obs.dto.SetLoginPasswordDto;
@@ -39,6 +43,12 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		return new CreateAccountResponse(newuser.getAccountId(),newuser.getTitle(),newuser.getFirstName(),newuser.getLastname());
 		
 	}
+//	
+//	public Netbanking loadUserbyUserId(String netbankingId) throws AccountNotFoundException
+//	{
+//		Netbanking user = netbankingRepository.findByNetbankingId(netbankingId);
+//		return new Netbanking(user.getNetbankingId(),user.getPassword(),new ArrayList<>());
+//	}
 
 	@Override
 	public String forgotUserId(String accountId, String otp) {
@@ -83,6 +93,17 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 	}
 	
+//	@Override
+//
+//	public Netbanking loadUserByNetbankingId(String netbankingId) throws UsernameNotFoundException 
+//	{
+//		Netbanking loginuser = netbankingRepository.findByNetbankingId(netbankingId);
+//		
+//		return new org.springframework.security.core.userdetails.Netbanking(loginuser.getNetbankingId(),loginuser.getPassword(),new ArrayList<>());
+//		//return new org.springframework.security.core.userdetails.Netbanking();
+//		
+//	}
+//	
 //	public String setLoginPassword(String accountId,String newLoginPassword, String confirmLoginPassword)
 //	{
 //		String response="";

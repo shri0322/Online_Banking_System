@@ -12,7 +12,9 @@ public interface TransactionsRepository extends JpaRepository <Transactions,Stri
 	
 	Transactions findByTransactionId(String transactionId);
 	
-	List<Transactions> findByTransactionType(String transactionType);
+	List<Transactions> findByTxnType(String transactionType);
 	
 	List<Transactions> findByFromUserId(String fromUserId);
+	
+	
 }

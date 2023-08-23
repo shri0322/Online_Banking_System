@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.batch8grp1.obs.dto.TransferRequestDto;
 import com.batch8grp1.obs.entity.Transactions;
+import com.batch8grp1.obs.payload.response.TransferResponse;
 import com.batch8grp1.obs.service.TransactionsService;
 
 @RestController
@@ -27,10 +31,10 @@ public class TransactionsController {
 		return ResponseEntity.ok(alltxns);
 	}
 
-	@GetMapping("/txnofuser")
-	public ResponseEntity<?> txnOfUser(@RequestParam String fromUserId)
+	@GetMapping("/user")
+	public ResponseEntity<?> txnOfUser(@RequestParam String netbankingId)
 	{
-		List<Transactions> usertxn = txnService.getTxnOfFromUserId(fromUserId);
+		List<Transactions> usertxn = txnService.getTxnOfFromUserId(netbankingId);
 		return ResponseEntity.ok(usertxn);
 	}
 	
@@ -47,6 +51,14 @@ public class TransactionsController {
 		List<Transactions> txnoftype = txnService.getTxnOfType(transactionType);
 		return ResponseEntity.ok(txnoftype);
 	}
+	
+	@PostMapping("/transfer")
+	public ResponseEntity<?> txn(@RequestBody TransferRequestDto transferRequestDto)
+	{
+		TransferResponse transfer = txnService.transfer(transferRequestDto);
+		return ResponseEntity.ok(transfer);
+	}
+	
 	
 	
 	

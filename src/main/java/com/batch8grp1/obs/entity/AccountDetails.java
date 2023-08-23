@@ -53,5 +53,8 @@ public class AccountDetails {
 		return isApproved;
 	}
 	
+	public void setBalance(long balance) {
+		this.balance=balance;
+	}
 	
 }

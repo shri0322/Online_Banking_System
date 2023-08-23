@@ -1,5 +1,7 @@
 package com.batch8grp1.obs.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +20,7 @@ public class Transactions {
 	private String transactionId;
 	
 	@Column(name="TransactionType")
-	private String transactionType;
+	private String txnType;
 	
 	@Column(name="InitiatedAt")
 	private String initiatedAt;
@@ -43,11 +45,11 @@ public class Transactions {
 	
 	public Transactions() {}
 
-	public Transactions(String transactionId, String transactionType, String initiatedAt, String completedAt,
+	public Transactions(String transactionType, String initiatedAt, String completedAt,
 			String fromUserId, String toUserId, long amount, String remarks, boolean isCredited) {
 		super();
-		this.transactionId = transactionId;
-		this.transactionType = transactionType;
+		this.transactionId = generateUniqueNumericString(8);
+		this.txnType = transactionType;
 		this.initiatedAt = initiatedAt;
 		this.completedAt = completedAt;
 		this.fromUserId = fromUserId;
@@ -57,6 +59,19 @@ public class Transactions {
 		this.isCredited = isCredited;
 	}
 
+	
+	public static String generateUniqueNumericString(int length) {
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString().replaceAll("-", ""); 
+        String numericString = uuidAsString.replaceAll("[^0-9]", "");
+        if (numericString.length() < length) {
+            numericString = String.format("%0" + length + "d", Long.parseLong(numericString));
+        } else if (numericString.length() > length) {
+            numericString = numericString.substring(0, length);
+        }
+
+        return numericString;
+    }
 	public String getFromUserId() {
 		return fromUserId;
 	}
@@ -73,8 +88,8 @@ public class Transactions {
 		return transactionId;
 	}
 
-	public String getTransactionType() {
-		return transactionType;
+	public String getTxnType() {
+		return txnType;
 	}
 
 	public String getInitiatedAt() {

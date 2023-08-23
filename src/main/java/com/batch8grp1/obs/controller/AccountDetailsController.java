@@ -21,9 +21,9 @@ public class AccountDetailsController {
 	@Autowired private AccountDetailsService accountdetailsService;
 	
 	@GetMapping("/getdetails")
-	public ResponseEntity<?> getAccountDetails(@RequestParam(value="accountId") String accountId)
+	public ResponseEntity<?> getAccountDetails(@RequestParam(value="netbankingId") String netbankingId)
 	{
-		AccountDetailsResponse accountResponse = accountdetailsService.getAccountDetails(accountId);
+		AccountDetailsResponse accountResponse = accountdetailsService.getAccountDetails(netbankingId);
 		return ResponseEntity.ok(accountResponse);		
 	}
 

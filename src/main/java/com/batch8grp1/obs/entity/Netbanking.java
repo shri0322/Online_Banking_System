@@ -1,5 +1,6 @@
 package com.batch8grp1.obs.entity;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -44,6 +45,10 @@ public class Netbanking {
 		
 	}
 	
+	public Netbanking(String netbankingId2, String password2, ArrayList arrayList) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static String generateUniqueNumericString(int length) {
         UUID uuid = UUID.randomUUID();
         String uuidAsString = uuid.toString().replaceAll("-", ""); 
