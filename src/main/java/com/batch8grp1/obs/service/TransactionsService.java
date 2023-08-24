@@ -13,5 +13,7 @@ public interface TransactionsService {
 	Transactions getTxn(String transactionId);
 	List<Transactions> getTxnOfType(String transactionType);
 	TransferResponse transfer(TransferRequestDto transferRequestDto);
+	String withdrawalRequest(String accountId, long amount);
+	long getBalance(String accountId);
 
 }

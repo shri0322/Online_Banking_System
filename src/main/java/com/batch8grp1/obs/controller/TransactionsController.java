@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.batch8grp1.obs.dto.TransferRequestDto;
 import com.batch8grp1.obs.entity.Transactions;
+import com.batch8grp1.obs.exceptions.CustomException;
 import com.batch8grp1.obs.payload.response.TransferResponse;
 import com.batch8grp1.obs.service.TransactionsService;
 
@@ -28,38 +29,68 @@ public class TransactionsController {
 	public ResponseEntity<?> allTxns()
 	{
 		List<Transactions> alltxns = txnService.getAllTransactions();
-		return ResponseEntity.ok(alltxns);
+		if(alltxns.isEmpty())
+		{
+			throw new CustomException("No transactions to Display");
+		}
+		else return ResponseEntity.ok(alltxns);
 	}
 
 	@GetMapping("/user")
 	public ResponseEntity<?> txnOfUser(@RequestParam String netbankingId)
 	{
 		List<Transactions> usertxn = txnService.getTxnOfFromUserId(netbankingId);
-		return ResponseEntity.ok(usertxn);
+		if(usertxn.isEmpty())
+		{
+			throw new CustomException("No transactions by the User to Display");
+		}
+		else return ResponseEntity.ok(usertxn);
 	}
 	
 	@GetMapping("/gettxn")
 	public ResponseEntity<?> getTxn(@RequestParam String transactionId)
 	{
 		Transactions txn = txnService.getTxn(transactionId);
-		return ResponseEntity.ok(txn);
+		if(txn == null)
+		{
+			throw new CustomException("No such transaction exists");
+		}
+		else return ResponseEntity.ok(txn);
 	}
 
 	@GetMapping("/txnoftype")
 	public ResponseEntity<?> txnOfType(@RequestParam String transactionType)
 	{
 		List<Transactions> txnoftype = txnService.getTxnOfType(transactionType);
-		return ResponseEntity.ok(txnoftype);
+		if(txnoftype.isEmpty())
+		{
+			throw new CustomException("No transactions of the selected type");
+		}
+		else return ResponseEntity.ok(txnoftype);
 	}
 	
 	@PostMapping("/transfer")
 	public ResponseEntity<?> txn(@RequestBody TransferRequestDto transferRequestDto)
 	{
 		TransferResponse transfer = txnService.transfer(transferRequestDto);
-		return ResponseEntity.ok(transfer);
+		if(transfer.getMsg()!="Tranaction Successful!")
+		{
+			throw new CustomException("Something Went Wrong!");
+		}
+		else return ResponseEntity.ok(transfer);
 	}
 	
+	@PostMapping("/withdrawlrequest")
+	public ResponseEntity<?> withdrawRequest(@RequestParam String accountId,@RequestParam long amount)
+	{
+		String response = txnService.withdrawalRequest(accountId, amount);
+		return ResponseEntity.ok(response);
+	}
 	
-	
-	
+	@GetMapping("/getbalance")
+	public ResponseEntity<?> getBalance(@RequestParam String accountId)
+	{
+		long response = txnService.getBalance(accountId);
+		return ResponseEntity.ok(response);
+	}
 }

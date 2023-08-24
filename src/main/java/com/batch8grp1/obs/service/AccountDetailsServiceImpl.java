@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.batch8grp1.obs.entity.AccountDetails;
 import com.batch8grp1.obs.entity.UserDetails;
+import com.batch8grp1.obs.exceptions.CustomException;
 import com.batch8grp1.obs.payload.response.AccountDetailsResponse;
 import com.batch8grp1.obs.repository.AccountDetailsRepository;
 import com.batch8grp1.obs.repository.NetbankingRepository;
@@ -21,11 +22,16 @@ public class AccountDetailsServiceImpl implements AccountDetailsService{
 		
 		//System.out.println("AccountId: " + accountId);
 		
-		String accountId = netbankingRepository.findByNetbankingId(netbankingId).getAccountId();
-		AccountDetails account=accountdetailsRepository.findByAccountId(accountId);
-		UserDetails user=userdetailsRepository.findByAccountId(accountId);
-		return new AccountDetailsResponse(account.getAccountId(),user.getTitle(),user.getFirstName(),user.getLastname(),account.getCreatedAt(),account.getBalance());
-		
+		try {
+			String accountId = netbankingRepository.findByNetbankingId(netbankingId).getAccountId();
+			AccountDetails account=accountdetailsRepository.findByAccountId(accountId);
+			UserDetails user=userdetailsRepository.findByAccountId(accountId);
+			return new AccountDetailsResponse(account.getAccountId(),user.getTitle(),user.getFirstName(),user.getLastname(),account.getCreatedAt(),account.getBalance());
+			
+		}catch(Exception e)
+		{
+			throw new CustomException("Failed to fetch Account Details");
+		}
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.batch8grp1.obs.dto.SetLoginPasswordDto;
 import com.batch8grp1.obs.dto.UserDetailsDto;
+import com.batch8grp1.obs.exceptions.CustomException;
 import com.batch8grp1.obs.payload.response.CreateAccountResponse;
 import com.batch8grp1.obs.service.UserDetailsService;
 
@@ -35,6 +36,7 @@ public class UserDetailsController {
 	
 	{
 		String response=userDetailsService.forgotUserId(AccountId,otp);
+		
 		return ResponseEntity.ok(response);
 	}
 	
@@ -43,6 +45,7 @@ public class UserDetailsController {
 	public ResponseEntity<?> forgotPassword(@RequestParam String userId, @RequestParam String otp)
 	{
 		String response=userDetailsService.forgotPassword(userId,otp);
+		
 		return ResponseEntity.ok(response);
 	}
 	
@@ -50,6 +53,7 @@ public class UserDetailsController {
 	public ResponseEntity<?> setLoginPassword(@RequestBody SetLoginPasswordDto setLoginPassword)
 	{
 		String response=userDetailsService.setLoginPassword(setLoginPassword);
+		
 		return ResponseEntity.ok(response);
 	}
 	
