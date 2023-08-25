@@ -1,5 +1,6 @@
 package com.batch8grp1.obs.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.batch8grp1.obs.dto.TransferRequestDto;
@@ -15,5 +16,6 @@ public interface TransactionsService {
 	TransferResponse transfer(TransferRequestDto transferRequestDto);
 	String withdrawalRequest(String accountId, long amount);
 	long getBalance(String accountId);
+	List<Transactions> getTxnFromToDate(String netbankingId,LocalDate startdate, LocalDate enddate);
 
 }

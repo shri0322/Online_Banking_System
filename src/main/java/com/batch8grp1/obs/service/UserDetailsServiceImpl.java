@@ -31,14 +31,14 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	{
 
 		UserDetails newuser=new UserDetails(userDetailsDto.getUserId(),userDetailsDto.getTitle(),userDetailsDto.getFirstName(),userDetailsDto.getLastName(),userDetailsDto.getFatherName(),userDetailsDto.getMobileNo(),userDetailsDto.getEmailId(),
-				userDetailsDto.getAadharNo(),userDetailsDto.getdOB(),userDetailsDto.getAddress(),userDetailsDto.getOccupationType(),userDetailsDto.getSourceOfIncome(),userDetailsDto.getGrossAnnualIncome(),userDetailsDto.getAccountId());
+				userDetailsDto.getAadharNo(),userDetailsDto.getdOB(),userDetailsDto.getAddress(),userDetailsDto.getOccupationType(),userDetailsDto.getSourceOfIncome(),userDetailsDto.getGrossAnnualIncome(),userDetailsDto.getAccountId(),false);
 
 		userDetailsRepository.save(newuser);
 
 		Netbanking newnetuser = new Netbanking("",newuser.getAccountId(),"","","");
 		netbankingRepository.save(newnetuser);
 
-		AccountDetails newaccount = new AccountDetails(newuser.getAccountId(),0,LocalDate.now().toString(),false);
+		AccountDetails newaccount = new AccountDetails(newuser.getAccountId(),0,LocalDate.now().toString(),null);
 		accountDetailsRepository.save(newaccount);
 
 		return new CreateAccountResponse(newuser.getAccountId(),newuser.getTitle(),newuser.getFirstName(),newuser.getLastname());

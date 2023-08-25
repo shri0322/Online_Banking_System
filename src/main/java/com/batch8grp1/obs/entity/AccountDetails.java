@@ -14,6 +14,8 @@ import lombok.*;
 @Table(name="AccountDetails")
 public class AccountDetails {
 	
+
+
 	@Id
 	@Column(name="AccountId",nullable=false)
 	private String accountId;
@@ -25,11 +27,11 @@ public class AccountDetails {
 	private String createdAt;
 	
 	@Column(name="isApproved",nullable=true)
-	private boolean isApproved;
+	private String isApproved;
 
 	public AccountDetails() {}
 
-	public AccountDetails(String accountId, long balance, String createdAt, boolean isApproved) {
+	public AccountDetails(String accountId, long balance, String createdAt, String isApproved) {
 		super();
 		this.accountId = accountId;
 		this.balance = balance;
@@ -49,7 +51,7 @@ public class AccountDetails {
 		return createdAt;
 	}
 
-	public boolean isApproved() {
+	public String getIsApproved() {
 		return isApproved;
 	}
 	
@@ -57,4 +59,7 @@ public class AccountDetails {
 		this.balance=balance;
 	}
 	
+	public void setIsApproved(String isApproved) {
+		this.isApproved = isApproved;
+	}
 }

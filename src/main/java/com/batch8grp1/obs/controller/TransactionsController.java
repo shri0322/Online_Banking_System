@@ -1,5 +1,6 @@
 package com.batch8grp1.obs.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,16 +82,24 @@ public class TransactionsController {
 	}
 	
 	@PostMapping("/withdrawlrequest")
-	public ResponseEntity<?> withdrawRequest(@RequestParam String accountId,@RequestParam long amount)
+	public ResponseEntity<?> withdrawRequest(@RequestParam String netbankingId,@RequestParam long amount)
 	{
-		String response = txnService.withdrawalRequest(accountId, amount);
+		String response = txnService.withdrawalRequest(netbankingId, amount);
 		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/getbalance")
-	public ResponseEntity<?> getBalance(@RequestParam String accountId)
+	public ResponseEntity<?> getBalance(@RequestParam String netbankingId)
 	{
-		long response = txnService.getBalance(accountId);
+		long response = txnService.getBalance(netbankingId);
 		return ResponseEntity.ok(response);
 	}
+	
+	@GetMapping("/getusertxns")
+	public ResponseEntity<?> getTxnFromToDate(@RequestParam String netbankingId, @RequestParam LocalDate startdate, @RequestParam LocalDate enddate)
+	{
+		List<Transactions> response = txnService.getTxnFromToDate(netbankingId,startdate, enddate);
+		return ResponseEntity.ok(response);
+	}
+	
 }

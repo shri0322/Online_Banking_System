@@ -59,11 +59,14 @@ public class UserDetails {
 	@Column(name="AccountId",nullable=false)
 	private String accountId;
 	
+	@Column(name="IsAdmin",nullable=false)
+	private boolean isAdmin;
+	
 	public UserDetails() {}
 	
 	public UserDetails(String userId, String title, String firstName, String lastName, String fatherName, String mobileNo, String emailId,
 			String aadharNo, String dOB, String address, String occupationType, String sourceOfIncome,
-			String grossAnnualIncome, String accountId) {
+			String grossAnnualIncome, String accountId, boolean isAdmin) {
 		super();
 		this.userId = generateUniqueNumericString(11);
 		this.title=title;
@@ -79,6 +82,7 @@ public class UserDetails {
 		this.sourceOfIncome = sourceOfIncome;
 		this.grossAnnualIncome = grossAnnualIncome;
 		this.accountId = generateUniqueNumericString(11);
+		this.isAdmin = false;
 	}
 	
 	public static String generateUniqueNumericString(int length) {
