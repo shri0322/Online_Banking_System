@@ -15,6 +15,11 @@ import lombok.Setter;
 public class Beneficiary {
 	
 	@Id
+	
+	@Column(name="Beneficiaryid",nullable=false)
+	private String id;
+	
+	
 	@Column(name="NetbankingIdofPayee",nullable=false)
 	private String netbankingIdofPayee;
 	
@@ -34,6 +39,8 @@ public class Beneficiary {
 		this.beneficiaryAccountId = beneficiaryAccountId;
 		this.beneficiaryName = beneficiaryName;
 	}
+	
+	
 	
 	public String getNetbankingIdofPayee() {
 		return netbankingIdofPayee;

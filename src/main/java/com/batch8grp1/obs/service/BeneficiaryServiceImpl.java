@@ -1,6 +1,7 @@
 package com.batch8grp1.obs.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		Beneficiary newbenef = new Beneficiary(beneficiaryDto.getNetbankingIdOfPayee(),beneficiaryDto.getBeneficiaryAccountId(),beneficiaryDto.getBeneficiaryName());
 		beneficiaryRepository.save(newbenef);
 		List<Beneficiary> listnew = beneficiaryRepository.findAll();
-		List<Beneficiary> benefofuser = null;
+		ArrayList<Beneficiary> benefofuser = new ArrayList<>();
 
 		for(Beneficiary b : listnew)
 		{
@@ -33,7 +34,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 				benefofuser.add(b);
 			}
 		}
-		return benefofuser;
+		return listnew;
 		
 	}
 	
@@ -41,7 +42,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	public List<Beneficiary> getBeneficary(String netbankingId)
 	{
 		List<Beneficiary> listnew = beneficiaryRepository.findAll();
-		List<Beneficiary> benefofuser = null;
+		ArrayList<Beneficiary> benefofuser = new ArrayList<>();
 
 		for(Beneficiary b : listnew)
 		{
