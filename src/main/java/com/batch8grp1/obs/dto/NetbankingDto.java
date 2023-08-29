@@ -26,7 +26,7 @@ public class NetbankingDto {
 	private String txnPassword;
 	private String otp;
 	
-	//public NetbankingDto() {};
+	public NetbankingDto() {};
 	
 	public NetbankingDto(String accountId,String password,String txnPassword,String otp) {
 		this.accountId=accountId;

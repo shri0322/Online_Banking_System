@@ -24,7 +24,6 @@ public class CreateAccountResponse {
 	public CreateAccountResponse(String accountId, String title, String firstName, String lastName) {
 		this.accountId = accountId;
 		this.fullName = title + " " + firstName + " " + lastName;
-	}
-	
+	}	
 	
 }
