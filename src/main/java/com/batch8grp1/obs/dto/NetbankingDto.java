@@ -18,6 +18,8 @@ import lombok.*;
 @AllArgsConstructor
 public class NetbankingDto {
 
+	
+
 	@Autowired PasswordEncoder passwordEncoder;
 
 	private String netbankingId;
@@ -26,15 +28,25 @@ public class NetbankingDto {
 	private String txnPassword;
 	private String otp;
 	
-	public NetbankingDto() {};
+//	public NetbankingDto() {};
 	
 	public NetbankingDto(String accountId,String password,String txnPassword,String otp) {
+		super();
 		this.accountId=accountId;
 		this.password=setPassword(password);
 		this.txnPassword=setTxnPassword(txnPassword);
 		this.otp=otp;
 		
 	}
+//	
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
+//	
+//
+//	public void setTxnPassword(String txnPassword) {
+//		this.txnPassword = password;
+//	}
 	
 	public String getNetbankingId() {
 		return netbankingId;
@@ -48,12 +60,14 @@ public class NetbankingDto {
 		return password;
 	}
 
+	
 	public String setPassword(String password) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
 		String encodedPassword = bCryptPasswordEncoder.encode(password);
 		//this.password = passwordEncoder.encode(password);
 		return encodedPassword;
 	}
+	
 
 	public String getTxnPassword() {
 		return txnPassword;

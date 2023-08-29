@@ -37,6 +37,8 @@ public class NetbankingServiceImpl implements NetbankingService {
 			return new RegisterResponse(null,"Account doesn't exists");
 		}
 		
+		System.out.println("txnPass: " + netbankingDto.getTxnPassword());
+		
 		netbanking.setPassword(netbankingDto.getPassword());
 		netbanking.setTxnPassword(netbankingDto.getTxnPassword());
 		netbanking.setOtp(netbankingDto.getOtp());

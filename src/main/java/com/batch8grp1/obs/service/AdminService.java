@@ -3,6 +3,7 @@ package com.batch8grp1.obs.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.batch8grp1.obs.dto.UpdateAccountStatusDto;
 import com.batch8grp1.obs.entity.AccountDetails;
 import com.batch8grp1.obs.entity.Transactions;
 import com.batch8grp1.obs.payload.response.GetAccountResponse;

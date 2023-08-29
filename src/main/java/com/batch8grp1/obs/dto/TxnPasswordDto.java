@@ -1,29 +1,30 @@
 package com.batch8grp1.obs.dto;
 
 public class TxnPasswordDto {
-	
-	private String accountId;
+
+	private String netbankingId;
 	private String newTxnPassword;
-	private String confirmTxnPassword;
 	
 	public TxnPasswordDto() {
 		super();
 	}
 
-	public TxnPasswordDto(String accountId, String newTxnPassword, String confirmTxnPassword) {
+	public TxnPasswordDto(String netbankingId, String newTxnPassword) {
 		super();
-		this.accountId = accountId;
+		this.netbankingId = netbankingId;
 		this.newTxnPassword = newTxnPassword;
-		this.confirmTxnPassword = confirmTxnPassword;
+
 	}
 	
-	public String getAccountId() {
-		return accountId;
+	public String getNetbankingId() {
+		return netbankingId;
 	}
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public void setNetbankingId(String netbankingId) {
+		this.netbankingId = netbankingId;
 	}
+	
+	
 
 	public String getNewTxnPassword() {
 		return newTxnPassword;
@@ -33,15 +34,6 @@ public class TxnPasswordDto {
 		this.newTxnPassword = newTxnPassword;
 	}
 
-	public String getConfirmTxnPassword() {
-		return confirmTxnPassword;
-	}
-
-	public void setConfirmTxnPassword(String confirmTxnPassword) {
-		this.confirmTxnPassword = confirmTxnPassword;
-	}
-
-	
 	
 
 }

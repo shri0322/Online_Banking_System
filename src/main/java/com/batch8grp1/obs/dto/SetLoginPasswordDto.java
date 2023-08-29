@@ -2,27 +2,29 @@ package com.batch8grp1.obs.dto;
 
 public class SetLoginPasswordDto {
 	
-	private String accountId;
+	
+	private String netbankingId;
 	private String newLoginPassword;
-	private String confirmLoginPassword;
+
 	
 	public SetLoginPasswordDto() {}
 
-	public SetLoginPasswordDto(String accountId, String newLoginPassword, String confirmLoginPassword) {
+	public SetLoginPasswordDto(String netbankingId, String newLoginPassword) {
 		super();
-		this.accountId = accountId;
+		this.netbankingId = netbankingId;
 		this.newLoginPassword = newLoginPassword;
-		this.confirmLoginPassword = confirmLoginPassword;
+		
 	}
 
-	public String getAccountId() {
-		return accountId;
+	public String getNetbankingId() {
+		return netbankingId;
 	}
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public void setNetbankingId(String netbankingId) {
+		this.netbankingId = netbankingId;
 	}
 
+	
 	public String getNewLoginPassword() {
 		return newLoginPassword;
 	}
@@ -31,13 +33,6 @@ public class SetLoginPasswordDto {
 		this.newLoginPassword = newLoginPassword;
 	}
 
-	public String getConfirmLoginPassword() {
-		return confirmLoginPassword;
-	}
-
-	public void setConfirmLoginPassword(String confirmLoginPassword) {
-		this.confirmLoginPassword = confirmLoginPassword;
-	}
 	
 	
 

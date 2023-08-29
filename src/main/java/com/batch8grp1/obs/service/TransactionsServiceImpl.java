@@ -1,5 +1,6 @@
 package com.batch8grp1.obs.service;
 
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,7 @@ import java.util.ListIterator;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.batch8grp1.obs.dto.TransferRequestDto;
@@ -108,6 +110,7 @@ public class TransactionsServiceImpl implements TransactionsService{
 	public TransferResponse transfer(TransferRequestDto transferRequestDto)
 	{
 		String accountId = netbankingRepository.findByNetbankingId(transferRequestDto.getFromUserId()).getAccountId();
+		String txnpass = netbankingRepository.findByNetbankingId(transferRequestDto.getFromUserId()).getTxnPassword();
 		AccountDetails fromaccount=accountDetailsRepository.findByAccountId(accountId);
 
 		if(fromaccount.getBalance() < transferRequestDto.getAmount())
@@ -115,17 +118,25 @@ public class TransactionsServiceImpl implements TransactionsService{
 			return new TransferResponse(new Transactions(),"Insufficient Balance to complete this transactions");
 		}
 		else {
+//			
+//			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
+//			String encodedPassword = bCryptPasswordEncoder.encode(transferRequestDto.getTxnPassword());
+//			System.out.println("encoded : " + encodedPassword);
+//			System.out.println("txnpass : " + txnpass);
+			if(transferRequestDto.(txnpass)){
 
-			Transactions txn = new Transactions(transferRequestDto.getTxnType(),LocalDate.now().toString(),LocalDate.now().toString(),accountId,transferRequestDto.getToUserId(),transferRequestDto.getAmount(),transferRequestDto.getRemarks(),false);
-			//txn.setBalance(txn.getBalance()-amount);
-			//AccountDetails toaccount =  accountDetailsRepository.findByAccountId(transferRequestDto.getToUserId());
+				Transactions txn = new Transactions(transferRequestDto.getTxnType(),LocalDate.now().toString(),LocalDate.now().toString(),accountId,transferRequestDto.getToUserId(),transferRequestDto.getAmount(),transferRequestDto.getRemarks(),false);
+				//txn.setBalance(txn.getBalance()-amount);
+				//AccountDetails toaccount =  accountDetailsRepository.findByAccountId(transferRequestDto.getToUserId());
 
-			fromaccount.setBalance(fromaccount.getBalance()-transferRequestDto.getAmount());
-			//toaccount.setBalance(toaccount.getBalance()+transferRequestDto.getAmount());
+				fromaccount.setBalance(fromaccount.getBalance()-transferRequestDto.getAmount());
+				//toaccount.setBalance(toaccount.getBalance()+transferRequestDto.getAmount());
 
-			txnRepository.save(txn);
+				txnRepository.save(txn);
 
-			return new TransferResponse(txn,"Transaction Successful!");
+				return new TransferResponse(txn,"");
+			}else return new TransferResponse(new Transactions(),"Incorrect Transaction Password");
+
 		}
 
 	}

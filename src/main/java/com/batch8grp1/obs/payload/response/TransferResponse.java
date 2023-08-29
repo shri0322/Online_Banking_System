@@ -4,8 +4,16 @@ import com.batch8grp1.obs.entity.Transactions;
 
 public class TransferResponse {
 	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	private Transactions txn;
-	private String msg;
+	private String message;
 	
 	
 	public TransferResponse() {}
@@ -14,7 +22,7 @@ public class TransferResponse {
 	{
 		super();
 		this.txn = txn;
-		this.msg = msg;
+		this.message = msg;
 	}
 
 	public Transactions getTxn() {
@@ -25,12 +33,6 @@ public class TransferResponse {
 		this.txn = txn;
 	}
 
-	public String getMsg() {
-		return msg;
-	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
 
 }

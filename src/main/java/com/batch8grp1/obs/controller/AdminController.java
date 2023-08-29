@@ -53,9 +53,10 @@ public class AdminController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping("/approval")
+	@PostMapping("/approve")
 	public ResponseEntity<?> approval(@RequestParam String accountId,@RequestParam String isApproved)
 	{
+		System.out.println("accountiD "+ accountId);
 		String response = adminService.approved(accountId,isApproved);
 		return ResponseEntity.ok(response);
 	}

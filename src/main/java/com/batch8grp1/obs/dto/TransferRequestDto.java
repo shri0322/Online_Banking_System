@@ -2,20 +2,30 @@ package com.batch8grp1.obs.dto;
 
 public class TransferRequestDto {
 	
+	public String getTxnPassword() {
+		return txnPassword;
+	}
+
+	public void setTxnPassword(String txnPassword) {
+		this.txnPassword = txnPassword;
+	}
+
 	private String fromUserId;
 	private String toUserId;
 	private long amount;
 	private String txnType;
+	private String txnPassword;
 	private String remarks;
 	
 	public TransferRequestDto() {} 
 	
-	public TransferRequestDto(String fromUserId, String toUserId, long amount, String txnType, String remarks) {
+	public TransferRequestDto(String fromUserId, String toUserId, long amount, String txnType, String txnPassword, String remarks) {
 		super();
 		this.fromUserId = fromUserId;
 		this.toUserId = toUserId;
 		this.amount = amount;
 		this.txnType = txnType;
+		this.txnPassword=txnPassword;
 		this.remarks = remarks;
 	}
 

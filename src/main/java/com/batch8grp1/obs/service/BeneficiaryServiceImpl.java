@@ -22,8 +22,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	
 	public List<Beneficiary> addBeneficary(BeneficiaryDto beneficiaryDto)
 	{
-		Beneficiary newbenef = new Beneficiary(beneficiaryDto.getNetbankingIdOfPayee(),beneficiaryDto.getBeneficiaryAccountId(),beneficiaryDto.getBeneficiaryName());
+		Beneficiary newbenef = new Beneficiary(beneficiaryDto.getNetbankingIdOfPayee(),beneficiaryDto.getAccountId(),beneficiaryDto.getName());
 		beneficiaryRepository.save(newbenef);
+		System.out.println("benef name " + beneficiaryDto.getAccountId());
 		List<Beneficiary> listnew = beneficiaryRepository.findAll();
 		ArrayList<Beneficiary> benefofuser = new ArrayList<>();
 

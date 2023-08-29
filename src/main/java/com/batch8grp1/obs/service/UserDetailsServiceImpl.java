@@ -108,19 +108,21 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public String setLoginPassword(SetLoginPasswordDto setLoginPasswordDto)
 	{
 		String response="";
-		Netbanking user=netbankingRepository.findByAccountId(setLoginPasswordDto.getAccountId());
+		Netbanking user=netbankingRepository.findByNetbankingId(setLoginPasswordDto.getNetbankingId());
+		System.out.println("USer " + user.getNetbankingId());
 		try {
 			if(user != null)
 			{
+				System.out.println("B");
 				try {
-					if(setLoginPasswordDto.getNewLoginPassword().equals(setLoginPasswordDto.getConfirmLoginPassword()))
-					{
+					System.out.println("C");
 						BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
 						String encodedPassword = bCryptPasswordEncoder.encode(setLoginPasswordDto.getNewLoginPassword());
+						System.out.println("password : " + setLoginPasswordDto.getNewLoginPassword() + " encoded : " + encodedPassword);
 						user.setPassword(encodedPassword);
 						netbankingRepository.save(user);
 						response ="New Login Password Set";
-					}
+
 				}catch(Exception e)
 				{
 					throw new CustomException("Couldn't Set New Login Password");
@@ -137,19 +139,17 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public String setTxnPassword(TxnPasswordDto TxnPasswordDto)
 	{
 		String response="";
-		Netbanking user=netbankingRepository.findByAccountId(TxnPasswordDto.getAccountId());
+		Netbanking user=netbankingRepository.findByNetbankingId(TxnPasswordDto.getNetbankingId());
 		try {
 			if(user != null)
 			{
 				try {
-					if(TxnPasswordDto.getNewTxnPassword().equals(TxnPasswordDto.getConfirmTxnPassword()))
-					{
 						BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
 						String encodedPassword = bCryptPasswordEncoder.encode(TxnPasswordDto.getNewTxnPassword());
 						user.setPassword(encodedPassword);
 						netbankingRepository.save(user);
 						response ="New Transaction Password Set";
-					}
+				
 				}catch(Exception e)
 				{
 					throw new CustomException("Couldn't Set New Transaction Password");

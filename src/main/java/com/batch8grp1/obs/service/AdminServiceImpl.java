@@ -136,7 +136,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		accountDetailsRepository.save(account);
 		
-		if(isApproved.equals("Accepted"))
+		if(isApproved.equals("ACCEPTED"))
 		{
 			return "Account Register Request Accepted";
 		}else return "Account Register Request Rejected";
