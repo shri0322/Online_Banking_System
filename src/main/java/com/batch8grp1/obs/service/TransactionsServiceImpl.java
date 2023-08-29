@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.batch8grp1.obs.dto.TransferRequestDto;
@@ -33,6 +34,8 @@ public class TransactionsServiceImpl implements TransactionsService{
 	@Autowired private AccountDetailsRepository accountDetailsRepository;
 
 	@Autowired private NetbankingRepository netbankingRepository;
+	
+	@Autowired PasswordEncoder passwordEncoder;
 
 	public List<Transactions> getAllTransactions()
 	{
@@ -123,7 +126,9 @@ public class TransactionsServiceImpl implements TransactionsService{
 //			String encodedPassword = bCryptPasswordEncoder.encode(transferRequestDto.getTxnPassword());
 //			System.out.println("encoded : " + encodedPassword);
 //			System.out.println("txnpass : " + txnpass);
-			if(transferRequestDto.(txnpass)){
+			Boolean isPwdRight=passwordEncoder.matches(transferRequestDto.getTxnPassword(), txnpass);
+			if(isPwdRight)
+			{
 
 				Transactions txn = new Transactions(transferRequestDto.getTxnType(),LocalDate.now().toString(),LocalDate.now().toString(),accountId,transferRequestDto.getToUserId(),transferRequestDto.getAmount(),transferRequestDto.getRemarks(),false);
 				//txn.setBalance(txn.getBalance()-amount);
