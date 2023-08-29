@@ -64,7 +64,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 				catch(Exception e)
 				{
 					response = "Wrong Otp";
-					throw new CustomException("Wrong Otp");			}
+          
+					throw new CustomException("Wrong Otp");
+				}
+
 			}
 		}catch(Exception e)
 		{
