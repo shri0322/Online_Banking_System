@@ -1,0 +1,3 @@
+[submodule "obs-fe"]
+	path = obs-fe
+	url = git@github.com:illegalcall/obs-fe.git
